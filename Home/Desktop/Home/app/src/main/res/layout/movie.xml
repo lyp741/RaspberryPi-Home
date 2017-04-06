@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/toolbar_back"
+        android:titleTextColor="@android:color/white"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电影"
+            android:layout_gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+            />
+    </android.support.v7.widget.Toolbar>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_movie"
+        android:layout_marginTop="62dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/back"
+        android:layout_marginBottom="75dp"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/player"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom">
+        <Button
+            android:id="@+id/btn_playing"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@drawable/playing"
+            android:layout_centerInParent="true"
+            style="?android:attr/borderlessButtonStyle"
+            />
+        <Button
+            android:id="@+id/movie_prev"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/thelast"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btn_playing"
+            android:layout_marginRight="50dp"
+            style="?android:attr/borderlessButtonStyle" />
+        <Button
+            android:id="@+id/movie_next"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/thenext"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btn_playing"
+            android:layout_marginLeft="50dp"
+            style="?android:attr/borderlessButtonStyle" />
+    </RelativeLayout>
+</FrameLayout>
