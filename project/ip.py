@@ -4,7 +4,9 @@ import sys, os, urllib2, json
 
 import re, urllib
 import sys
-global city
+import threading
+import time
+from static import Redis_conn as rds
 reload(sys)
 sys.setdefaultencoding('utf8')
 class Get_public_ip:
@@ -43,27 +45,35 @@ def get_ip_area(ip):
     except Exception as ex:
         print(ex)
 
-
-    #ip = '123.125.114.144'
-    #ip = 'www.baidu.com'   # invalid ip.
-
-
-
 class weather(object):
     weather_uri = "http://apistore.baidu.com/microservice/weather?cityid="
     def mainHandle(self,day):
-        global city
-        city_name = city[0:len(city)-1]
+        city = rds.get("current_city")
+        city_name = city[0:len(city)-3]
+        print "len city",len(city)
+        print "city",city
+        print "city_name",city_name
         code_uri = "http://php.weather.sina.com.cn/xml.php?"+urllib.urlencode({'city':city_name.encode('gb2312')})+"&password=DJOYnieT8234jlsK&day="+day
         uri = code_uri
         print uri
         url = urllib2.urlopen(uri).read().decode('utf-8')
         return url
 
-global city
-ip = getip()
-city = get_ip_area(ip)
+def getCity():
+    while True:
+        try:
+            ip = getip()
+            city = get_ip_area(ip)
+            print ip
+            print "len",len(city)
+            rds.set("current_ip",ip)
+            rds.set("current_city",city)
+        except:
+            print "error getCity"
+        time.sleep(600)
 
+t = threading.Thread(target=getCity)
+t.start()
 def getWeather(day):
     wt = weather()
     return wt.mainHandle(day)
