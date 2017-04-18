@@ -8,6 +8,7 @@ import tornado.options
 import json
 import threading
 import re
+import os
 import time
 import subprocess
 from static import Redis_conn as rds
@@ -192,6 +193,7 @@ class PlayControl():
                     self.popen_handler.stdin.write(b'q')
                 self.popen_handler.stdin.flush()
                 self.popen_handler.kill()
+                os.system('sudo killall omxplayer.bin')
                 print "stoped"
             time.sleep(0.01)
         except Exception,e:

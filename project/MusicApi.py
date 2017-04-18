@@ -121,14 +121,9 @@ class NetEase(object):
             expire_time = re.compile(r'\d{4}-\d{2}-\d{2}').findall(cookie)
             if expire_time:
                 if expire_time[0] < time.strftime('%Y-%m-%d', time.localtime(time.time())):
-                    self.storage.database['user'] = {
-                        'username': '',
-                        'password': '',
-                        'user_id': '',
-                        'nickname': '',
-                    }
                     os.remove(self.cookiefile)
-        except IOError as e:
+                    raise ValueError('A very specific bad thing happened')
+        except Exception,e:
             print 'error'
             response = self.login('13372877202',hashlib.md5('950228'.encode('utf-8')).hexdigest())
             if response['code'] != 200 :

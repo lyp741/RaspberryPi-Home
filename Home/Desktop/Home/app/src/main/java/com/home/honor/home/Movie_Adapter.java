@@ -46,7 +46,9 @@ public class Movie_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             String filename =filenames.get(posindata);
             myholder.filename.setText(filename);
             myholder.order.setText(""+position);
-            Glide.with(context).load(StaticClass.imageServer + filename + ".jpg").into(myholder.thumb);
+            String img_url = StaticClass.thumbServer + filename + ".jpg";
+            Glide.with(context).load(img_url).into(myholder.thumb);
+            Log.d("movie_thumb",img_url);
             try {
                 if ( filename.equals(PlayControl.playing_moviename)) {
                     if (PlayControl.playing_status.equals("playing")) {

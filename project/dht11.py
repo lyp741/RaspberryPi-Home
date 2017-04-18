@@ -36,8 +36,8 @@ def measure_dht11():
                 k += 1
                 if k > 100:
                     break
-
-            if k < 8:
+            print k
+            if k < 20:
                 data.append(0)
             else:
                 data.append(1)
@@ -77,3 +77,6 @@ def measure_dht11():
 
         GPIO.cleanup()
     return temperature, humidity
+
+if __name__ == '__main__':
+    measure_dht11()
