@@ -125,7 +125,7 @@ class NetEase(object):
                     raise ValueError('A very specific bad thing happened')
         except Exception,e:
             print 'error'
-            response = self.login('13372877202',hashlib.md5('950228'.encode('utf-8')).hexdigest())
+            response = self.login('17631437202',hashlib.md5('950228'.encode('utf-8')).hexdigest())
             if response['code'] != 200 :
                 print "login error"
             else:
