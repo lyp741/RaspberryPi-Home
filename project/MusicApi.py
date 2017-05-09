@@ -326,10 +326,21 @@ class NetEase(object):
             print Exception , e
             return []
 
+    def exp(self):
+        action = 'http://xmusic.xmusic.top/xapi/v1/songx'  # NOQA
+        self.session.cookies.load()
+
+        data = {'id': 26209407, 'br': 320000}
+        connection = self.session.post(action,
+                                       data=data,
+                                       headers="", )
+        print connection.text
+
 if __name__ == '__main__':
     ne = NetEase()
     #response = ne.login('18525464022',hashlib.md5('zxcj153264'.encode('utf-8')).hexdigest())
     #response = ne.login('13372877202',hashlib.md5('950228'.encode('utf-8')).hexdigest())
     #ne.username = response['profile']['nickname']
     #ne.uid = response['account']['id']
-    img_url, musics = ne.playlist_detail(30749020)
+    #img_url, musics = ne.playlist_detail(30749020)
+    ne.exp()
