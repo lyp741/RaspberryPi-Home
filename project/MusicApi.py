@@ -327,10 +327,10 @@ class NetEase(object):
             return []
 
     def exp(self):
-        action = 'http://xmusic.xmusic.top/xapi/v1/songx'  # NOQA
+        action = 'http://xmusic.xmusic.top/xapi/v3/song/detail'  # NOQA
         self.session.cookies.load()
 
-        data = {'id': 26209407, 'br': 320000}
+        data = {'c':[{'id':26209407, 'v':0}]}
         connection = self.session.post(action,
                                        data=data,
                                        headers="", )
